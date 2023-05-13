@@ -9,9 +9,9 @@ const Home = () => {
 
   return (
     <div className="container">
-      <h1>My Todos</h1>
+      <h1>todos</h1>
       <ul>
-        <li>
+        <li className="add-tasks">
           <input 
             type="text" 
             onChange={(event) => setInputValue(event.target.value)}
@@ -21,13 +21,14 @@ const Home = () => {
                 setInputValue("");
               }
             }}
-            placeholder="what"></input>
+            placeholder="What needs to be done?"></input>
         </li>
         {todos.map((item, index) => ( 
           <div 
             key={index}
             onMouseEnter={() => setHoverIndex(index)}
             onMouseLeave={() => setHoverIndex(-1)}
+            className="new-tasks"
           >
             {item} 
             {hoverIndex === index && (
@@ -39,7 +40,13 @@ const Home = () => {
           </div>
         ))}
       </ul>
-      <div>{todos.length} tasks</div>
+      {todos.length > 0 ? (
+        <div className="number-tasks">{todos.length} item left</div>
+      ) : (
+        <div className="number-tasks">No tasks, add tasks </div>
+      )}
+      <div className="extrabox1"></div>
+      <div className="extrabox2"></div>
     </div>
   );
 };
